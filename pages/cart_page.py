@@ -16,6 +16,7 @@ class CartPage(BasePage):
         self.line_prices = page.get_by_test_id("line-price")
         self.total = page.get_by_test_id("cart-total")
         self.continue_shopping = page.get_by_test_id("continue-shopping")
+        self.product_quantities = self.quantities
 
     def line_totals(self) -> list[float]:
         return [money(t) for t in self.line_prices.all_inner_texts()]

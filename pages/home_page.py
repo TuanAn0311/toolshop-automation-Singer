@@ -24,6 +24,8 @@ class HomePage(BasePage):
         self.sort_select = page.get_by_test_id("sort")
         self.sorting_completed = page.get_by_test_id("sorting_completed")
         self.product_prices = page.get_by_test_id("product-price")
+        self.hammer_category = page.get_by_label("Hammer", exact=True)
+        self.price_max_slider = page.get_by_role("slider").nth(1)
         # TODO B2/B4 (later): price_slider_max = page.get_by_role("slider").nth(1)
 
     def open(self):
@@ -55,6 +57,13 @@ class HomePage(BasePage):
 
         self.product_card(name).first.click()
         return ProductPage(self.page)
+
+    def filter_hammer_category(self):
+        with self.page.expect_response(lambda response: PRODUCT_LIST.search(response.url) is not None):
+            self.hammer_category.check()
+        # The product-list response arrives before the frontend finishes replacing the grid.
+        self.product_names.first.filter(has_text=re.compile("hammer", re.IGNORECASE)).wait_for()
+        return self
 
     def prices(self) -> list[float]:
         return [float(p.replace("$", "")) for p in self.product_prices.all_inner_texts()]

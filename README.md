@@ -71,3 +71,19 @@ chọn **Approve** trước khi người mở PR merge. Chủ repo kiểm tra b�
 
 Khi nghiệm thu ngày 11/11: trình chiếu luật bảo vệ `main`, PR #1 đã merge
 có approval của thành viên khác, rồi chạy `pytest -m smoke` để thấy `4 passed`.
+
+## Sprint 2: API, route and UI coverage
+
+The Sprint 2 suite is organized under `tests/api/` and `tests/ui/`. API tests use Playwright's
+`APIRequestContext` fixtures from `conftest.py`; search cases are loaded from
+`data/search_keywords.json`. The UI suite includes route interception and uses page objects for
+application locators and actions. Fixtures provide session API/user/auth state and per-test browser
+contexts.
+
+Run the Sprint 2 checks with:
+
+```powershell
+python -m pytest tests/api tests/ui -q
+python -m pytest -m api --collect-only -q
+python -m pytest -m smoke
+```
