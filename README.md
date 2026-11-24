@@ -1,6 +1,8 @@
 # toolshop-automation-Singer
 
-Khung kiểm thử tự động Toolshop của nhóm Singer — Sprint 1.
+[![CI](https://github.com/TuanAn0311/toolshop-automation-Singer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/TuanAn0311/toolshop-automation-Singer/actions/workflows/ci.yml)
+
+Khung kiểm thử tự động Toolshop của nhóm Singer.
 
 ## Cài đặt trên Windows PowerShell
 
@@ -87,3 +89,24 @@ python -m pytest tests/api tests/ui -q
 python -m pytest -m api --collect-only -q
 python -m pytest -m smoke
 ```
+
+## Sprint 2 · BDD
+
+Hai ví dụ trong `tests/bdd/features/cart.feature` kiểm tra luồng tìm sản phẩm,
+thêm số lượng đã chọn vào giỏ và tính đúng tiền từng dòng cùng tổng giỏ hàng.
+
+```powershell
+python -m pytest tests/bdd -v
+python -m pytest
+```
+
+## Kết quả CI
+
+Workflow `CI` chạy toàn bộ bộ kiểm thử trên Chromium, Firefox và WebKit. Mỗi job
+khởi động Toolshop với dữ liệu riêng và tải báo cáo HTML lên artifact
+`report-chromium`, `report-firefox` hoặc `report-webkit` trong 7 ngày.
+
+## Trace Viewer
+
+Với test lỗi, tải artifact của trình duyệt tương ứng từ lượt chạy CI, giải nén
+và mở `trace.zip` trong thư mục `test-results` của test bằng `playwright show-trace`.
