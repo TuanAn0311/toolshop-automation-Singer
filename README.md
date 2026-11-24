@@ -46,7 +46,7 @@ thuộc `example.com` để tránh khóa tài khoản dùng chung.
 ## Cấu trúc và quy tắc
 
 - `conftest.py`, `pytest.ini`, `requirements.txt`, `.gitignore`, `.env.example`:
-  chép từ repo thực hành, giữ nguyên phiên bản thư viện.
+  dựa trên repo thực hành. Các phiên bản thư viện nằm trong `requirements.txt`.
 - `pages/`: đủ 7 page object từ nhánh `bai-giai` của
   [repo lớp](https://github.com/jameboykks/toolshop-practice/tree/bai-giai/pages).
 - `tests/ui/test_smoke.py`: 4 test, mỗi test có marker `smoke`, `ui` và docstring
@@ -61,9 +61,9 @@ Select-String -Path pages\*.py -Pattern "expect\(|assert "
 Select-String -Path tests\ui\*.py,pages\*.py -Pattern "sleep|wait_for_timeout"
 ```
 
-## Pull Request và nghiệm thu
+## Sprint 1 · Pull Request và nghiệm thu
 
-Mọi thay đổi đi qua nhánh `feature/ManhCuong-sprint1` và Pull Request vào `main`.
+Các thay đổi Sprint 1 đi qua nhánh `feature/ManhCuong-sprint1` và Pull Request vào `main`.
 Tiêu đề PR: `Sprint 1: framework and smoke tests`. Mô tả ghi kết quả chạy thật
 của `pytest -m smoke`.
 
@@ -106,7 +106,13 @@ Workflow `CI` chạy toàn bộ bộ kiểm thử trên Chromium, Firefox và We
 khởi động Toolshop với dữ liệu riêng và tải báo cáo HTML lên artifact
 `report-chromium`, `report-firefox` hoặc `report-webkit` trong 7 ngày.
 
+[![CI xanh trên Chromium, Firefox và WebKit](docs/screenshots/ci-green.png)](https://github.com/TuanAn0311/toolshop-automation-Singer/actions/runs/45388659896)
+
 ## Trace Viewer
+
+![Trace Viewer hiển thị bước chờ phản hồi thất bại và ảnh trang Toolshop](docs/screenshots/trace-viewer.png)
+
+Ảnh chụp từ một lần chạy BDD trên Chromium với Toolshop công khai.
 
 Với test lỗi, tải artifact của trình duyệt tương ứng từ lượt chạy CI, giải nén
 và mở `trace.zip` trong thư mục `test-results` của test bằng `playwright show-trace`.
